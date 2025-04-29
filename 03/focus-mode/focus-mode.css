@@ -7,6 +7,7 @@ body,
 *:has(article),
 article,
 article * {
+    /* 重置为浏览器默认样式（优先）或 CSS 初始值 */
     display: revert !important;
 }
 
