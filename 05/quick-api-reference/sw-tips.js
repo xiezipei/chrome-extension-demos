@@ -1,6 +1,7 @@
+// 补充注释
 console.log('sw-tips.js');
 
-// Fetch tip & save in storage
+// 更新提示
 const updateTip = async () => {
   const response = await fetch('https://chrome.dev/f/extension_tips');
   const tips = await response.json();
@@ -8,10 +9,10 @@ const updateTip = async () => {
   return chrome.storage.local.set({ tip: tips[randomIndex] });
 };
 
+// 提示的闹钟名称
 const ALARM_NAME = 'tip';
 
-// Check if alarm exists to avoid resetting the timer.
-// The alarm might be removed when the browser session restarts.
+// 创建提示的闹钟
 async function createAlarm() {
   const alarm = await chrome.alarms.get(ALARM_NAME);
   if (typeof alarm === 'undefined') {
@@ -23,12 +24,13 @@ async function createAlarm() {
   }
 }
 
+// 初始化提示的闹钟
 createAlarm();
 
-// Update tip once a day
+// 监听提示的闹钟
 chrome.alarms.onAlarm.addListener(updateTip);
 
-// Send tip to content script via messaging
+// 监听消息
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.greeting === 'tip') {
     chrome.storage.local.get('tip').then(sendResponse);

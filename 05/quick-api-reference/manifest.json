@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Open extension API reference",
+    "name": "Open Vue API reference",
     "version": "1.0.0",
     "icons": {
       "16": "images/icon-16.png",
@@ -18,7 +18,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://developer.chrome.com/docs/extensions/reference/*"],
+            "matches": ["https://cn.vuejs.org/api/*"],
             "js": ["content.js"]
         }
     ]
